@@ -46,7 +46,7 @@ services:
 
   gazebo:
     <<: *base-gpu
-    command: roslaunch --wait autobots_handy_simulation gazebo.launch rviz:=false
+    command: roslaunch --wait handy_environment gazebo.launch rviz:=false
     depends_on: &depends-on-sim
       set-sim-time:
         condition: service_completed_successfully
