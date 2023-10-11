@@ -23,6 +23,7 @@ RUN apt update && \
     git \
     python3-dev \
     python3-pip \
+    python3.8-venv \
     python-is-python3 \
     libgl1-mesa-glx \
     libsm-dev \
@@ -107,10 +108,6 @@ RUN cd src && \
 
 # add the current ros module and install the requirements
 WORKDIR /catkin_ws/src/app
-RUN apt update && apt install -y --no-install-recommends \
-    python3.8-venv \
-    && \
-    apt clean
 # https://github.com/python-poetry/poetry/issues/2102
 RUN pip install pipx && pipx install poetry
 ENV PATH=/root/.local/bin:$PATH
