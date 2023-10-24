@@ -59,3 +59,11 @@ services:
     command: roslaunch --wait finalarm_moveit_config moveit_rviz.launch
     depends_on:
       - gazebo
+
+# this node will subscribe to the camera topic and publish
+# image embeddings to another topic
+  img2vec:
+    <<: *base-gpu
+    command: roslaunch --wait finalarm_moveit_config moveit_rviz.launch
+    depends_on:
+      - gazebo
