@@ -1,9 +1,13 @@
-# reinforcement learning
+# Reinforcement Learning
 
-This is exploration into reinforcement learning with manipulators. 
+This is exploration into reinforcement learning with manipulators. We're trying to build a modular environment to train RL-Based agents by providing a standard REST Based Interface to access multiple simulations environment based of Handy Maniupulators.
+
+On the otherside, we're tryint to design an agent that could learn and benefit from this environment setup.
+
+![RL_Architecture](/doc/images/rl_idea_architecture.png "MarineGEO logo")
 
 
-## quickstart
+## Quickstart
 
 To run the gazebo simulation, run the following commands which require docker.
 
@@ -16,6 +20,9 @@ make build
 
 # run everything
 make up
+
+# You can enter a running container by running the following command
+docker exec -it [docker_id] /bin/bash
 ```
 
 Go to the [agent](agent/README.md) directory for more information on the agent.
