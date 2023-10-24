@@ -1,6 +1,7 @@
 # reinforcement learning
 
-This is exploration into reinforcement learning with manipulators.
+This is exploration into reinforcement learning with manipulators. 
+
 
 ## quickstart
 
