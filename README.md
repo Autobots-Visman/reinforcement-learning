@@ -35,6 +35,9 @@ make up
 
 # You can enter a running container by running the following command
 docker exec -it [docker_id] /bin/bash
+
+# You can run a new docker image (e.g. to use for development) for the base image using
+docker run -it [image_id] /bin/bash
 ```
 
 ## generating docs
