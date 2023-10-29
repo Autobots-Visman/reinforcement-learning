@@ -1,0 +1,10 @@
+<launch>
+  <!-- Load fastapi -->
+  <node
+    name="state_controller_serve"
+    pkg="state_controller"
+    type="serve.sh"
+    output="screen"
+  />
+
+</launch>

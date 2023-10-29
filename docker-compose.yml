@@ -59,3 +59,9 @@ services:
     command: roslaunch --wait finalarm_moveit_config moveit_rviz.launch
     depends_on:
       - gazebo
+
+  state_controller:
+    <<: *base
+    command: roslaunch --wait state_controller serve.launch
+    depends_on:
+      - gazebo

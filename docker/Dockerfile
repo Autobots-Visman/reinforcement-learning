@@ -28,6 +28,7 @@ RUN apt update && \
     libgl1-mesa-glx \
     libsm-dev \
     wget \
+    curl \
     && \
     apt clean
 
@@ -77,6 +78,7 @@ RUN apt update && \
     ros-noetic-gazebo-ros \
     ros-noetic-camera-info-manager \
     ros-noetic-moveit-commander \
+    ros-noetic-rospy-message-converter \
     # also include image_view for debugging, and usb_cam for a personal camera
     ros-noetic-image-view \
     ros-noetic-usb-cam \
@@ -108,16 +110,20 @@ RUN cd src && \
 
 # add the current ros module and install the requirements
 WORKDIR /catkin_ws/src/app
-# https://github.com/python-poetry/poetry/issues/2102
-RUN pip install pipx && pipx install poetry
 ENV PATH=/root/.local/bin:$PATH
+
+# https://github.com/python-poetry/poetry/issues/2102
+RUN curl -sSL https://install.python-poetry.org | python3 -
+# install poetry requirements, this may be replaced by pip-tools
+ENV POETRY_VIRTUALENVS_CREATE=false
+ENV POETRY_VIRTUALENVS_IN_PROJECT=false
 ADD poetry.lock pyproject.toml ./
-RUN poetry config virtualenvs.create false && \
-    poetry install --no-root
+RUN poetry install --no-root
+
+ADD requirements.txt .
+RUN pip install -r requirements.txt
 
 ADD . ./
-
-RUN poetry install
 
 # build the workspace
 WORKDIR /catkin_ws
