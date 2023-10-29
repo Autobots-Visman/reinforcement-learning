@@ -78,6 +78,7 @@ RUN apt update && \
     ros-noetic-gazebo-ros \
     ros-noetic-camera-info-manager \
     ros-noetic-moveit-commander \
+    ros-noetic-rospy-message-converter \
     # also include image_view for debugging, and usb_cam for a personal camera
     ros-noetic-image-view \
     ros-noetic-usb-cam \

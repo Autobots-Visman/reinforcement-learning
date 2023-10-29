@@ -41,6 +41,7 @@ pip-compile
 
 # or via docker
 docker compose run base pip-compile
+sudo chown -R $(id -u):$(id -g) requirements.txt
 ```
 
 Rebuild the docker images to pull in the new dependencies.

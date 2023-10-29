@@ -26,6 +26,8 @@ idna==3.4
     # via anyio
 importlib-metadata==6.8.0
     # via build
+numpy==1.24.4
+    # via -r ros/state_controller/requirements.in
 packaging==23.2
     # via build
 pip-tools==7.3.0
