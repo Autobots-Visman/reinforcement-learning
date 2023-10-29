@@ -11,7 +11,6 @@ x-base: &base
   volumes:
     - ./:/catkin_ws/src/app
     - /tmp/.X11-unix:/tmp/.X11-unix:rw
-    - /catkin_ws/src/app/.venv/
   environment: &env
     DISPLAY: $DISPLAY
     QT_X11_NO_MITSHM: 1

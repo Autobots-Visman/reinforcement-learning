@@ -29,6 +29,22 @@ make build
 make up
 ```
 
+## installing new dependencies
+
+To add a new python dependency to the ros packages, add a `requirements.in` to the package root.
+Then add a reference to it from the top-level `requirements.in`.
+Then compile the dependencies using `pip-compile` via `pip-tools`.
+
+```bash
+pip install pip-tools
+pip-compile
+
+# or via docker
+docker compose run base pip-compile
+```
+
+Rebuild the docker images to pull in the new dependencies.
+
 ## notes on wsl2
 
 Using host networking mode in docker on wsl2 will end up using the dockerd networking stack instead of the one inside of your wsl2 environment.
