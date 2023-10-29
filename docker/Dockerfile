@@ -111,15 +111,7 @@ RUN cd src && \
 # add the current ros module and install the requirements
 WORKDIR /catkin_ws/src/app
 ENV PATH=/root/.local/bin:$PATH
-
-# https://github.com/python-poetry/poetry/issues/2102
-RUN curl -sSL https://install.python-poetry.org | python3 -
-# install poetry requirements, this may be replaced by pip-tools
-ENV POETRY_VIRTUALENVS_CREATE=false
-ENV POETRY_VIRTUALENVS_IN_PROJECT=false
-ADD poetry.lock pyproject.toml ./
-RUN poetry install --no-root
-
+ADD ./agent agent
 ADD requirements.txt .
 RUN pip install -r requirements.txt
 

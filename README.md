@@ -4,18 +4,6 @@ This is exploration into reinforcement learning with manipulators.
 
 ## quickstart
 
-You will need Python 3.11 installed.
-Install poetry and then run an example to make sure everything is working as expected.
-
-```bash
-pip install poetry
-
-poetry install
-poetry run shell
-
-python -m src.examples.fetch_reach
-```
-
 To run the gazebo simulation, run the following commands which require docker.
 
 ```bash
@@ -28,6 +16,8 @@ make build
 # run everything
 make up
 ```
+
+Go to the [agent](agent/README.md) directory for more information on the agent.
 
 ## installing new dependencies
 
