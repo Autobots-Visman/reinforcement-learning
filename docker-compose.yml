@@ -11,6 +11,7 @@ x-base: &base
   volumes:
     - ./:/catkin_ws/src/app
     - /tmp/.X11-unix:/tmp/.X11-unix:rw
+    - /catkin_ws/src/app/.venv/
   environment: &env
     DISPLAY: $DISPLAY
     QT_X11_NO_MITSHM: 1
@@ -57,5 +58,11 @@ services:
     # prefer running rviz outside of docker.
     <<: *base-gpu
     command: roslaunch --wait finalarm_moveit_config moveit_rviz.launch
+    depends_on:
+      - gazebo
+
+  state_controller:
+    <<: *base
+    command: roslaunch --wait state_controller serve.launch
     depends_on:
       - gazebo

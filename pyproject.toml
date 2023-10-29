@@ -13,6 +13,9 @@ gymnasium-robotics = "^1.2.2"
 # import-metadata when python3.8
 importlib-metadata = {version = ">=0.12", python = "<=3.8"}
 
+[tool.poetry.group.ros.dependencies]
+reinforcement-learning-ros-state-controller = { path = "ros/state_controller", develop = true}
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"

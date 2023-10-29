@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "reinforcement-learning-ros-state-controller"
+version = "0.1.0"
+description = ""
+authors = ["Anthony Miyaguchi <acmiyaguchi@gatech.edu>"]
+readme = "README.md"
+packages = [{include = "script"}]
+
+[tool.poetry.dependencies]
+python = ">=3.8"
+fastapi = "*"
+uvicorn = {extras = ["standard"], version = "^0.23.2"}
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

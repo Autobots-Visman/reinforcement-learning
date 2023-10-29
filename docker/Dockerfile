@@ -113,11 +113,13 @@ RUN pip install pipx && pipx install poetry
 ENV PATH=/root/.local/bin:$PATH
 ADD poetry.lock pyproject.toml ./
 RUN poetry config virtualenvs.create false && \
-    poetry install --no-root
+    poetry install --no-root --without ros
 
 ADD . ./
 
-RUN poetry install
+RUN poetry config virtualenvs.create false && poetry install
+# TODO: why won't uvicorn install properly
+# RUN pip install uvicorn
 
 # build the workspace
 WORKDIR /catkin_ws
