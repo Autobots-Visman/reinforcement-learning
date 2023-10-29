@@ -11,8 +11,6 @@ app = FastAPI()
 moveit_commander.roscpp_initialize(sys.argv)
 rospy.init_node("move_group_python_interface", anonymous=True)
 
-app.mount("/", StaticFiles(directory="../static", html=True), name="static")
-
 
 @app.get("/state")
 async def state():
@@ -20,3 +18,6 @@ async def state():
     state = robot.get_current_state()
     serialized = message_converter.convert_ros_message_to_dictionary(state)
     return {"robot": serialized}
+
+
+app.mount("/", StaticFiles(directory="../static", html=True), name="static")
