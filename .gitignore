@@ -3,4 +3,5 @@ __pycache__/
 *.py[cod]
 rendered/*.pdf
 
+venv/ 
 q.md

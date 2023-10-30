@@ -68,7 +68,7 @@ services:
 
   img2vec:
     <<: *base-gpu
-    command: roslaunch --wait img2vec img2vec.launch
+    command: rosrun img2vec img2vec.py
     depends_on:
       - gazebo
 

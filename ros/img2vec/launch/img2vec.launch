@@ -1,3 +1,9 @@
+<?xml version="1.0"?>
 <launch>
-    <node pkg="$(find img2vec)" type="img2vec.py" name="img2vec" output="screen"/>
+
+        <node pkg="$(find img2vec)" type="scripts/img2vec.py" name="img2vecNode" output="screen"/>
+
+
 </launch>
+
+
