@@ -65,10 +65,10 @@ services:
     command: roslaunch --wait state_controller serve.launch
     depends_on:
       - gazebo
-# this node will subscribe to the camera topic and publish
-# image embeddings to another topic
+
   img2vec:
     <<: *base-gpu
     command: roslaunch --wait img2vec img2vec.launch
     depends_on:
       - gazebo
+

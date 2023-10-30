@@ -7,6 +7,8 @@ On the otherside, we're tryint to design an agent that could learn and benefit f
 ![RL_Architecture](/doc/images/rl_idea_architecture.png "MarineGEO logo")
 
 
+
+
 ## Quickstart
 
 To run the gazebo simulation, run the following commands which require docker.
