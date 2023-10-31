@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<launch>
+
+        <node pkg="img2vec" type="img2vec.py" name="img2vecNode" output="screen"/>
+
+
+</launch>
+
+
