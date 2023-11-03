@@ -38,6 +38,7 @@
   <exec_depend>message_runtime</exec_depend>
 
   <test_depend>ros_pytest</test_depend>
+  <test_depend>image_publisher</test_depend>
 
   <!-- The export tag contains other, unspecified, tags -->
   <export>
