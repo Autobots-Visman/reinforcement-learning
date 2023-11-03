@@ -6,6 +6,8 @@ from cv_bridge import CvBridge, CvBridgeError
 import cv2
 import numpy as np
 from img2vec.msg import ImgEmbedding
+import std_msgs.msg
+
 
 import torch
 import torch.nn as nn
@@ -62,8 +64,16 @@ class image_converter:
     rospy.loginfo(img_embedding_np[:])
     rospy.loginfo("type: %s", type(img_embedding_np))
     rospy.loginfo("shape: %s", img_embedding_np.shape)
+
+    # generate message 
+    embeddings_msg = ImgEmbedding()
+    embeddings_msg.embeddings = img_embedding_np
+    h = std_msgs.msg.Header()
+    h.stamp = rospy.Time.now()
+    embeddings_msg.header = h
+
     try:
-      self.image_pub.publish(img_embedding_np)
+      self.image_pub.publish(embeddings_msg)
     except CvBridgeError as e:
       print(e)
 
