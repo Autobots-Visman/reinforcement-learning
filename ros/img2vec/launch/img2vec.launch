@@ -5,7 +5,7 @@
 
         <node pkg="img2vec" 
         type="embeddings.py" 
-        name="img2vecNode" 
+        name="img2vec" 
         output="screen">
 
         <param name="camera_topic" value="$(arg camera_topic)" /> 

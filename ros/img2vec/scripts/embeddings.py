@@ -77,8 +77,8 @@ class EmbeddingsGenerator:
 
 def main():
   rospy.init_node('EmbeddingsGenerator', anonymous=True)
-  camera_topic = rospy.get_param('/img2vecNode/camera_topic') 
-  dest_topic = rospy.get_param('/img2vecNode/dest_topic') 
+  camera_topic = rospy.get_param('/img2vec/camera_topic') 
+  dest_topic = rospy.get_param('/img2vec/dest_topic') 
   eg = EmbeddingsGenerator(camera_topic, dest_topic)
   rospy.loginfo("img2vec node is initialized")
   try:
