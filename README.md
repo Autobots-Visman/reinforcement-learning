@@ -1,12 +1,12 @@
 # Reinforcement Learning
 
-This is exploration into reinforcement learning with manipulators. We're trying to build a modular environment to train RL-Based agents by providing a standard REST Based Interface to access multiple simulations environment based of Handy Maniupulators.
+This is exploration into reinforcement learning with manipulators. W
 
-On the otherside, we're tryint to design an agent that could learn and benefit from this environment setup.
+e're trying to build a modular environment to train RL-Based agents by providing a standard REST Based Interface to access multiple simulations environment based of Handy Maniupulators.
+
+On the otherside, we're trying to design an agent that could learn and benefit from this environment setup.
 
 ![RL_Architecture](/doc/images/rl_idea_architecture.png "MarineGEO logo")
-
-
 
 
 ## Quickstart

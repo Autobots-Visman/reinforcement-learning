@@ -13,14 +13,13 @@ import torch
 import torch.nn as nn
 import torchvision.models as models
 import torchvision.transforms as transforms
-from torch.autograd import Variable
 
  
-class image_converter:
+class EmbeddingsGenerator:
 
-  def __init__(self):
-    self.image_pub = rospy.Publisher("image_embeddings",ImgEmbedding, queue_size=10)
-    self.image_sub = rospy.Subscriber("image_raw",Image,self.callback)
+  def __init__(self, camera_topic, dest_topic):
+    self.image_pub = rospy.Publisher(dest_topic,ImgEmbedding, queue_size=10)
+    self.image_sub = rospy.Subscriber(camera_topic, Image,self.callback)
 
     self.bridge = CvBridge()
 
@@ -36,14 +35,12 @@ class image_converter:
         transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),  # Using standard ImageNet normalization
     ])
 
-# source: https://becominghuman.ai/extract-a-feature-vector-for-any-image-with-pytorch-9717561d1d4c
   def get_vector(self,image):
       image_tensor = self.preprocess(image)
       image_tensor = image_tensor.unsqueeze(0)
       my_embedding = torch.zeros(512)    # 4. Define a function that will copy the output of a layer
       def copy_data(m, i, o):
           my_embedding.copy_(o.data.reshape(o.data.size(1)))
-          #my_embedding.copy_(o.data)    # 5. Attach that function to our selected layer
       h = self.layer.register_forward_hook(copy_data)    # 6. Run the model on our transformed image
       self.model(image_tensor)    # 7. Detach our copy function from the layer
       h.remove()    # 8. Return the feature vector
@@ -56,14 +53,14 @@ class image_converter:
       print(e)
 
     image_embeddings = self.get_vector(cv_image)
-    rospy.loginfo("Image embedggins generated with size: %s", image_embeddings.size())
+    rospy.logdebug("Image embedggins generated with size: %s", image_embeddings.size())
     
     # convert back to array of 64 floats
     img_embedding_np = image_embeddings.numpy()
     img_embedding_np = np.array(img_embedding_np, dtype='float64')
-    rospy.loginfo(img_embedding_np[:])
-    rospy.loginfo("type: %s", type(img_embedding_np))
-    rospy.loginfo("shape: %s", img_embedding_np.shape)
+    rospy.logdebug(img_embedding_np[:])
+    rospy.logdebug("type: %s", type(img_embedding_np))
+    rospy.logdebug("shape: %s", img_embedding_np.shape)
 
     # generate message 
     embeddings_msg = ImgEmbedding()
@@ -79,14 +76,16 @@ class image_converter:
 
 
 def main():
-  ic = image_converter()
-  print("initializing img2vec")
-  rospy.init_node('image_converter', anonymous=True)
+  rospy.init_node('EmbeddingsGenerator', anonymous=True)
+  camera_topic = rospy.get_param('/img2vecNode/camera_topic') 
+  dest_topic = rospy.get_param('/img2vecNode/dest_topic') 
+  eg = EmbeddingsGenerator(camera_topic, dest_topic)
+  rospy.loginfo("img2vec node is initialized")
   try:
     rospy.spin()
   except KeyboardInterrupt:
     print("Shutting down")
-  cv2.destroyAllWindows()
+
 
 if __name__ == '__main__':
-    main()
+  main()

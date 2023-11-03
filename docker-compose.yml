@@ -68,6 +68,6 @@ services:
 
   img2vec:
     <<: *base-gpu
-    command: roslaunch --wait img2vec img2vec.launch
+    command: roslaunch --wait img2vec img2vec.launch camera_topic:=image_raw dest_topic:=image_embeddings
     depends_on:
       - gazebo
