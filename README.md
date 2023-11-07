@@ -8,7 +8,6 @@ On the otherside, we're trying to design an agent that could learn and benefit f
 
 ![RL_Architecture](/doc/images/rl_idea_architecture.png "MarineGEO logo")
 
-
 ## Quickstart
 
 To run the gazebo simulation, run the following commands which require docker.
@@ -31,6 +30,17 @@ docker run -it [image_id] /bin/bash
 ```
 
 Go to the [agent](agent/README.md) directory for more information on the agent.
+
+## installing pre-commit
+
+`pre-commit` will run tooling to lint and format code before committing.
+
+```bash
+pip install pre-commit
+pre-commit install
+```
+
+This should now run automatically on commit.
 
 ## installing new dependencies
 
