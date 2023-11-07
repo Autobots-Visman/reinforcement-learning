@@ -1,8 +1,9 @@
-import numpy as np
-import matplotlib.pyplot as plt
 import os
-import gym
 import time
+
+import gym
+import matplotlib.pyplot as plt
+import numpy as np
 import QLearner as ql
 from gym.envs.toy_text.frozen_lake import generate_random_map
 
@@ -13,7 +14,7 @@ def try_environment():
         action = env.action_space.sample()
         observation, reward, done, trunc, info = env.step(action)
         time.sleep(0.2)
-        os.system('cls')
+        os.system("cls")
         if done:
             env.reset()
 
@@ -21,20 +22,20 @@ def try_environment():
 
 
 def train(env):
-
     debug = False
 
     rewards = []
     log_interval = 1000
 
-    learner = ql.QLearner(states=env.observation_space.n,
-                          actions=env.action_space.n,
-                          radr=0.001)
-
+    learner = ql.QLearner(
+        states=env.observation_space.n, actions=env.action_space.n, radr=0.001
+    )
 
     for episode in range(EPOCHS):
-
-        if debug: print(f"============= running episode: {episode} of {EPOCHS} =================")
+        if debug:
+            print(
+                f"============= running episode: {episode} of {EPOCHS} ================="
+            )
 
         state = env.reset()[0]
         done = False
@@ -42,7 +43,6 @@ def train(env):
         action = learner.get_next_action_without_Q_table_update(state)
 
         while not done:
-
             # state, reward... env.step()
             new_state, reward, done, trunc, info = env.step(action)
 
@@ -54,7 +54,7 @@ def train(env):
 
         # if debug: print(learner.Q)
 
-        # agent finsihed a round of the game
+        # agent finished a round of the game
         episode += 1
 
         # decay the random action rate
@@ -81,23 +81,25 @@ def check_performance(env, use_q_table=False, q_table=None):
             action = env.action_space.sample()
         state, reward, done, trunc, info = env.step(action)
         time.sleep(0.5)
-        os.system('cls')
+        os.system("cls")
 
         if done:
             break
 
     env.close()
 
+
 if __name__ == "__main__":
     # try_environment()
 
     # create a random environment
-    env = gym.make('FrozenLake-v1',
-                   desc=generate_random_map(size=5),
-                   is_slippery=False,
-                   render_mode='ansi',
-                   max_episode_steps=1000)   # max actions to take before stopping the game
-
+    env = gym.make(
+        "FrozenLake-v1",
+        desc=generate_random_map(size=5),
+        is_slippery=False,
+        render_mode="ansi",
+        max_episode_steps=1000,
+    )  # max actions to take before stopping the game
 
     # create a default environment
     # env = gym.make('FrozenLake-v1', desc=None, map_name='8x8', is_slippery=False, render_mode='ansi')
@@ -109,7 +111,7 @@ if __name__ == "__main__":
         # env.reset()
         EPOCHS = 10000  # episodes, how many times the agents plays the game until it hits done
         q_table = train(env)
-        np.save('C:\\Users\\riteshm\omscs\\vip\\RL\\frozen_lake_q_table.npy', q_table)
+        np.save("C:\\Users\\riteshm\omscs\\vip\\RL\\frozen_lake_q_table.npy", q_table)
 
     if testing == True:
         # print("====== using random actions... ")
@@ -121,5 +123,5 @@ if __name__ == "__main__":
         print("====== using Q-table actions... ")
         time.sleep(2)
         # env.reset()
-        q_table = np.load('C:\\Users\\riteshm\omscs\\vip\\RL\\frozen_lake_q_table.npy')
+        q_table = np.load("C:\\Users\\riteshm\omscs\\vip\\RL\\frozen_lake_q_table.npy")
         check_performance(env, use_q_table=True, q_table=q_table)
