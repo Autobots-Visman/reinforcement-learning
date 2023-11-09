@@ -43,6 +43,8 @@ services:
     <<: *core
     restart: on-failure
     command: stdbuf -o L rosparam set use_sim_time true
+    depends_on:
+      - core
 
   gazebo:
     <<: *base-gpu
