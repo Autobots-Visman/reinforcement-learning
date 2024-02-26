@@ -13,6 +13,9 @@ down:
 up-%:
 	docker compose -f docker-compose.yml -f docker-compose.$*.yml up
 
+config-%:
+	docker compose -f docker-compose.yml -f docker-compose.$*.yml config
+
 report:
 	docker compose -f docker-compose.pandoc.yml build
 	docker compose -f docker-compose.pandoc.yml run --rm pandoc

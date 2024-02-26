@@ -13,6 +13,9 @@ On the otherside, we're trying to design an agent that could learn and benefit f
 To run the gazebo simulation, run the following commands which require docker.
 
 ```bash
+# make sure your display variable is set
+export DISPLAY=:0
+
 # ensure the X server is open to connections from docker
 xhost +local:docker
 
