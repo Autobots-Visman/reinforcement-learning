@@ -4,7 +4,7 @@ version: "3.8"
 # we can use the x prefix for docker compose to ignore these settings
 x-base: &base
   build:
-    context: .
+    context: ..
     dockerfile: docker/Dockerfile
   image: autobots-visman/reinforcement-learning:latest
   network_mode: host
@@ -12,7 +12,7 @@ x-base: &base
   # be ignored by other platforms
   # https://github.com/microsoft/wslg/blob/main/samples/container/Containers.md
   volumes:
-    - ./:/catkin_ws/src/app
+    - ../:/catkin_ws/src/app
     - /tmp/.X11-unix:/tmp/.X11-unix:rw
   environment: &env
     DISPLAY: $DISPLAY

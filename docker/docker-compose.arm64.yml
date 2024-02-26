@@ -3,7 +3,7 @@ version: "3.8"
 
 x-base: &base
   build:
-    context: .
+    context: ..
     dockerfile: docker/Dockerfile.arm64
   image: autobots-visman/reinforcement-learning-arm64:latest
 

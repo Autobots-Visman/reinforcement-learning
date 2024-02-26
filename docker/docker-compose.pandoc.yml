@@ -13,4 +13,4 @@ services:
         pandoc --citeproc --csl=ieee.csl -o ../rendered/report.pdf report.md
       "
     volumes:
-      - ./:/data
+      - ../:/data
