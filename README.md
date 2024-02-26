@@ -30,6 +30,13 @@ docker exec -it [docker_id] /bin/bash
 docker run -it [image_id] /bin/bash
 ```
 
+By default, we build a cpu-only version of the environment.
+If you'd like to utilize a gpu for model inference or simulation, run the gpu version of the docker images.
+
+```bash
+make up-gpu
+```
+
 Go to the [agent](agent/README.md) directory for more information on the agent.
 
 ## installing pre-commit

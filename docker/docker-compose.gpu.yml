@@ -2,6 +2,10 @@
 version: "3.8"
 
 x-base: &base
+  build:
+    context: ..
+    dockerfile: docker/Dockerfile.gpu
+  image: autobots-visman/reinforcement-learning-gpu:latest
   deploy:
     resources:
       reservations:
