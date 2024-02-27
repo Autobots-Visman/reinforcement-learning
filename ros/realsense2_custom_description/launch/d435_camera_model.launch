@@ -6,6 +6,8 @@
   <arg name="topics_ns" default="camera" />
   <arg name="add_plug" default="false" />
   <arg name="publish_pointcloud" default="true" />
+  <arg name="parent_link" default="base_link" />
+  <!-- add paramsd -->
   <arg
     name="model"
     default="$(find realsense2_custom_description)/urdf/d435_camera.urdf.xacro"
@@ -17,6 +19,7 @@
     <param
       name="$(arg name)_description"
       command="$(find xacro)/xacro $(arg model)
+        parent_link:=$(arg parent_link)
         use_nominal_extrinsics:=true
         publish_pointcloud:=$(arg publish_pointcloud)
         add_plug:=$(arg add_plug)

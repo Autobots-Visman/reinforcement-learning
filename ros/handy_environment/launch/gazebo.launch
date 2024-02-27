@@ -16,6 +16,10 @@
       name="spawn_args"
       value="-x -0.25 -y 0.65 -z 1.66 -R 0.2 -P 0.75 -Y -0.5"
     />
+    <arg
+      name="parent_link"
+      value="link_8"
+    />
   </include>
 
   <!-- Load a table into the scene, rotated 90 degrees and offset from center -->
