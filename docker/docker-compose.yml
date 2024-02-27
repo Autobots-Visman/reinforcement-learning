@@ -3,36 +3,26 @@ version: "3.8"
 
 # we can use the x prefix for docker compose to ignore these settings
 x-base: &base
+  build:
+    context: ..
+    dockerfile: docker/Dockerfile
   image: autobots-visman/reinforcement-learning:latest
   network_mode: host
   # We also add some settings for WSL2 opengl gpu acceleration, which should
   # be ignored by other platforms
   # https://github.com/microsoft/wslg/blob/main/samples/container/Containers.md
   volumes:
-    - ./:/catkin_ws/src/app
+    - ../:/catkin_ws/src/app
     - /tmp/.X11-unix:/tmp/.X11-unix:rw
   environment: &env
     DISPLAY: $DISPLAY
     QT_X11_NO_MITSHM: 1
 
-x-gpu-deploy: &gpu-deploy
-  resources:
-    reservations:
-      devices:
-        - driver: nvidia
-          count: 1
-          capabilities: [gpu]
-
 services:
-  base:
-    <<: *base
-    build:
-      context: .
-      dockerfile: docker/Dockerfile
+  base: *base
 
   base-gpu: &base-gpu
     <<: *base
-    deploy: *gpu-deploy
 
   core: &core
     command: stdbuf -o L roscore
@@ -62,7 +52,7 @@ services:
     depends_on:
       - gazebo
 
-  state_controller:
+  state-controller:
     <<: *base
     command: roslaunch --wait state_controller serve.launch
     depends_on:
