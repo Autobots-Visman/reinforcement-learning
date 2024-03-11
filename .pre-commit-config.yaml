@@ -22,6 +22,7 @@ repos:
         additional_dependencies:
           - prettier@2.7.1
           - "@prettier/plugin-xml@2.2.0"
+          - prettier-plugin-svelte@3.2.2
       - id: prettier
         files: .(launch|test|world)$
         additional_dependencies:
@@ -32,4 +33,4 @@ repos:
     hooks:
       - id: codespell
         args: ["--ignore-words-list=ro"]
-        exclude: .ipynb
+        exclude: .ipynb|lock.json
