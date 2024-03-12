@@ -8,4 +8,5 @@ cd "$(dirname "${BASH_SOURCE[0]}")"
 cd ../ui
 
 # run in dev mode with hot reload for convenience
+npm install
 npm run dev

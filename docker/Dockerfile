@@ -18,15 +18,6 @@ RUN apt update && \
     && \
     apt clean
 
-# install node
-RUN curl -fsSL https://deb.nodesource.com/setup_21.x | bash
-RUN apt update && \
-    apt install -y --no-install-recommends \
-    nodejs \
-    npm \
-    && \
-    apt clean
-
 # pull any dependencies needed by the workspace. here's a command that might
 # make it a bit easier to enumerate and paste, when run in a container that
 # doesn't have any dependencies and the right packages in the workspace.
@@ -77,6 +68,14 @@ RUN apt update && \
     # also include image_view for debugging, and usb_cam for a personal camera
     ros-noetic-image-view \
     ros-noetic-usb-cam \
+    && \
+    apt clean
+
+# install node
+RUN curl -fsSL https://deb.nodesource.com/setup_21.x | bash \
+    && \
+    apt install -y --no-install-recommends \
+    nodejs \
     && \
     apt clean
 
