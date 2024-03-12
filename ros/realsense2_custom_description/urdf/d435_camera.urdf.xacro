@@ -8,25 +8,12 @@
   <xacro:arg name="topics_ns" default="camera" />
   <xacro:arg name="publish_pointcloud" default="false" />
   <xacro:arg name="gravity" default="1" />
-<<<<<<< HEAD
   <xacro:arg name="parent_link" default="base_link" />
-=======
-  <xacro:arg name="parent" default="base_link" />
->>>>>>> d6da9415920eba94e11fcedd4e21f711e6ad4dfd
-  <xacro:arg name="use_default" default="true"/>
   <xacro:include
     filename="$(find realsense2_custom_description)/urdf/_d435.urdf.xacro"
   />
-
-   <xacro:if value="$(arg use_default)">
-    <link name="base_link" />
-   </xacro:if>
   <xacro:sensor_d435
-<<<<<<< HEAD
     parent="$(arg parent_link)"
-=======
-    parent="$(arg parent)"
->>>>>>> d6da9415920eba94e11fcedd4e21f711e6ad4dfd
     use_nominal_extrinsics="$(arg use_nominal_extrinsics)"
     add_plug="$(arg add_plug)"
     use_mesh="$(arg use_mesh)"

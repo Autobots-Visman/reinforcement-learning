@@ -14,6 +14,7 @@ x-base: &base
   volumes:
     - ../:/catkin_ws/src/app
     - /tmp/.X11-unix:/tmp/.X11-unix:rw
+    - ../../ivaHandy:/catkin_ws/src/ivaHandy
   environment: &env
     DISPLAY: $DISPLAY
     QT_X11_NO_MITSHM: 1
@@ -36,12 +37,18 @@ services:
     depends_on:
       - core
 
-  gazebo:
+  gazebo-arm:
     <<: *base-gpu
-    command: roslaunch --wait handy_environment gazebo.launch rviz:=false
+    command: roslaunch --wait handy_environment gazebo-arm.launch rviz:=false
     depends_on: &depends-on-sim
       set-sim-time:
         condition: service_completed_successfully
+
+  gazebo-camera:
+    <<: *base-gpu
+    command: bash -c "sleep 10 && roslaunch --wait handy_environment gazebo-camera.launch rviz:=false" 
+    depends_on: 
+      - gazebo-arm
 
   moveit-rviz:
     # NOTE: WSL2 is not playing nicely rendering meshes in rviz, so we run this
@@ -50,16 +57,19 @@ services:
     <<: *base-gpu
     command: roslaunch --wait finalarm_moveit_config moveit_rviz.launch
     depends_on:
-      - gazebo
+      - gazebo-arm
+      - gazebo-camera
 
   state-controller:
     <<: *base
     command: roslaunch --wait state_controller serve.launch
     depends_on:
-      - gazebo
+      - gazebo-arm
+      - gazebo-camera
 
   img2vec:
     <<: *base-gpu
     command: roslaunch --wait img2vec img2vec.launch camera_topic:=image_raw dest_topic:=image_embeddings
     depends_on:
-      - gazebo
+      - gazebo-arm
+      - gazebo-camera

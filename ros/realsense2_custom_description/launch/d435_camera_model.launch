@@ -6,14 +6,14 @@
   <arg name="topics_ns" default="camera" />
   <arg name="add_plug" default="false" />
   <arg name="publish_pointcloud" default="true" />
-  <arg name="parent_link" default="base_link" />
+  <!-- if nothing is passed, the default link is the base link -->
+  <arg name="parent_link" default="base_link" /> 
   <!-- add paramsd -->
   <arg
     name="model"
     default="$(find realsense2_custom_description)/urdf/d435_camera.urdf.xacro"
   />
   <arg name="spawn_args" default="" />
-
   <group ns="camera">
     <!-- Load the sdf model only the parameter server -->
     <param
