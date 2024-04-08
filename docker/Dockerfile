@@ -71,6 +71,14 @@ RUN apt update && \
     && \
     apt clean
 
+# install node
+RUN curl -fsSL https://deb.nodesource.com/setup_21.x | bash \
+    && \
+    apt install -y --no-install-recommends \
+    nodejs \
+    && \
+    apt clean
+
 RUN pip install --upgrade setuptools pip wheel cython
 
 WORKDIR /catkin_ws
